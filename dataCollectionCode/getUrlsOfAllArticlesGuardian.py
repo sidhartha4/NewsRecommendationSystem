@@ -13,7 +13,7 @@ def daterange(start_date, end_date):
         yield start_date + timedelta(n)
         
 def main():
-    fp = gzip.open('datewiseGuardianArticles.txt.gz', 'wb')
+    fp = gzip.open('../data/datewiseGuardianArticles.txt.gz', 'wb')
     for single_date in daterange(start_date, end_date):
         print single_date.strftime('%d')
         try:

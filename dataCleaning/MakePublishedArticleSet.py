@@ -9,7 +9,7 @@ import pickle
 import unicodedata
 
 
-conn = sqlite3.connect('guardianPrintNewsDump.db')
+conn = sqlite3.connect('../data/guardianPrintNewsDump.db')
 c = conn.cursor()
 	
 def main():	

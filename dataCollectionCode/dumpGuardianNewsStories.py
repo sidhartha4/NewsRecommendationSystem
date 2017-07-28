@@ -5,6 +5,10 @@ import sqlite3, requests, zlib, json, time, gzip
 from subprocess import Popen, STDOUT
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
+
+#This code is no longer useful it helps us to capture the real articles using the url's from the guardian api
+#in order to get real time data like number of comments, number of shares
+
 conn = sqlite3.connect('guardianAllNewsDump.db')
 c = conn.cursor()
 

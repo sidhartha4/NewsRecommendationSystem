@@ -1,15 +1,17 @@
+import sqlite3
 from random import randint
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import sqlite3, requests, zlib, json, time, gzip
+import requests, zlib, json, time, gzip
 from subprocess import Popen, STDOUT
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from datetime import timedelta, date
 
-conn = sqlite3.connect('guardianPrintNewsDump.db')
+conn = sqlite3.connect('../data/guardianPrintNewsDump.db')
 c = conn.cursor()
 
-start_date = date(2015, 1, 1)
+
+start_date = date(2016, 7, 18)
 end_date = date(2016, 7, 20)
 
 def daterange(start_date, end_date):
@@ -21,12 +23,13 @@ def createTable():
      conn.commit()
 
 def checkDataSanity():
-     cursor = c.execute('SELECT * FROM printNewspaper')
-     a = 0
-     for row in cursor:
-          content = zlib.decompress(row[1])
-          soup = BeautifulSoup(content, 'html.parser')
-          scholars=soup.find_all("a", { "data-link-name" : "article" ,"tabindex" : "-1"});
+    cursor = c.execute('SELECT * FROM printNewspaper')
+    a = 0
+    for row in cursor:
+        print(row[0])
+        content = zlib.decompress(row[1])
+        soup = BeautifulSoup(content, 'html.parser')
+        scholars=soup.find_all("a", { "data-link-name" : "article" ,"tabindex" : "-1"});
 
 def main():
     xvfbCmdLine = "/usr/bin/Xvfb :11 -nolisten tcp -ac -cc 4 -screen 0 1200x800x24"
@@ -85,6 +88,6 @@ def main():
     xvfbProcess.wait()
      
 if __name__ == "__main__":
-    createTable()
-    main()
-    #checkDataSanity()
+    #createTable()
+    #main()
+    checkDataSanity()
