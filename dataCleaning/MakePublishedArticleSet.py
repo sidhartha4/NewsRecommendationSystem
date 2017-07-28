@@ -39,7 +39,7 @@ def main():
 				#print(k1)
 				#print("here")
 				myUrlDateArticle[printedwebUrl] = [row[0]]
-	with open('myUrlAccordingToDay.pickle', 'wb') as handle:
+	with open('myUrlSet.pickle', 'wb') as handle:
 		pickle.dump(myUrlDateArticle,handle)
 	
 	
